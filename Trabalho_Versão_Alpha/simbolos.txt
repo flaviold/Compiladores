@@ -1,0 +1,21 @@
+if palavraReservada
+fim_se palavraReservada
+fim_para palavraReservada
+enquanto palavraReservadaEnquanto
+faca	palavraReservadaFaca
+algoritmo palavraReservada
+switch palavrareservada
+fim palavraReservadaFim
+senao palavraReservadaSenao
+inicio palavraReservadaInicio
+fim_variaveis palavraReservada
+pare palavraReservada
+seja palavraReservada
+fim_seja palavraReservada
+var palavraReservadaVar
+programa inicioPrograma
+entao	palavraReservadaEntao
+se	palavraReservadaSe
+cadeia	palavraReservadaCadeia
+int palavraReservadaInteiro
+

@@ -1,0 +1,7 @@
+imprimacad	identificadorProcedimento
+imprimanum	identificadorProcedimento
+imprima	identificadorProcedimento
+leiacad	identificadorProcedimento
+leianum	identificadorProcedimento
+leia identificadorProcedimento
+escreva  identificadorProcedimento

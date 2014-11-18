@@ -1,0 +1,58 @@
+# Tente seguir o formato do arquivo igual ao desse!! Pra evitar erros...
+
+Estados:
+	start
+	identificador
+	int
+	float
+	numsei
+	quatro
+	cinco
+	comentario
+	fimcomentario
+	palavrareservada
+	estadofinal
+	simboloespecial
+	literal
+	literalfinal
+	atribuicao
+	operadoraritmetico
+	operadorrelacional
+	palavraReservadaPonto
+
+Transicoes:
+	start [\s\t\n] start
+	start [a-zA-Z_] identificador
+	start [0-9] int
+	start [;:\(\),] simboloespecial
+	start [\+\-%\*] operadoraritmetico
+	start [\[\]|[><=]|">="|"<="|"<>"] operadorrelacional
+	start [\.] palavraReservadaPonto
+	palavraReservadaPonto [\s] estadofinal
+	palavraReservadaPonto [^\s] estadofinal
+	operadorrelacional [\s] estadofinal
+	operadorrelacional [^\s] estadofinal
+	operadoraritmetico [\s] estadofinal
+	operadoraritmetico [^\s] estadofinal
+	simboloespecial [=] atribuicao
+	atribuicao [\s] estadofinal
+	atribuicao [^\s] estadofinal 
+	start [\"] literal
+	int [0-9] int
+	int [\.] float
+	int [^0-9] estadofinal
+	float [^0-9] estadofinal	
+	float [0-9] float
+	start [/] quatro
+	quatro [\*] cinco 
+	cinco [^\*] cinco
+	cinco [\*] comentario 
+	comentario [/] start	
+	simboloespecial [\s\t\n] estadofinal
+	literal [^\"] literal
+	literal [\"] literalfinal
+	literalfinal [\s] estadofinal
+	literalfinal [^\s] estadofinal
+	simboloespecial [^\s] estadofinal  
+	identificador [a-zA-Z0-9_] identificador
+	identificador [^a-z^A-Z^0-9^_] estadofinal	

@@ -1,0 +1,33 @@
+programa teste3;
+var sal: int;
+var x: int;
+var y: int;
+var nome: cadeia[40];
+
+inicio
+   leia(nome);
+   leia(sal);
+   x = 3 * sal;
+   y = 1000 + x * 10;
+   imprima(x);
+   imprima(y);
+   enquanto sal > 0 faca
+   inicio
+		imprima(nome);
+        imprima("    ");
+		/*PERCEBA QUE ESSES COMENTARIOS NAO IRAO */
+		imprima("olamundo");
+        imprima(sal);
+        imprima("   "); 
+        se sal < 1000.00 entao
+		inicio
+            imprima("ISENTO")
+		fim
+		senao
+		inicio
+           	imprima("COBRAR IMPOSTO")
+		fim;
+        leia(nome);
+        leia(sal)
+    fim
+fim . 

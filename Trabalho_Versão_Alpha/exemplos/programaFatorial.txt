@@ -1,0 +1,23 @@
+/*
+Exemplo 2 - Fatorial
+*/
+
+programa fatorial;
+var res: int;
+var fat: int;
+var x: int;
+
+inicio
+    imprima("Digite um numero");
+    leia(x);
+    
+    fat = x;
+    res = 1;
+    
+    enquanto x > 0 faca
+	inicio
+        res = res*x;
+        x = x-1;
+    fim;
+	imprima(res)
+fim.

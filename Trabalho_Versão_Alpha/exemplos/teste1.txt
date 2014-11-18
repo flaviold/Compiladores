@@ -1,0 +1,18 @@
+programa teste1;
+var a: int;
+var b: int;
+
+inicio
+   leia(a);
+   leia(b);
+		se a > b entao
+		inicio
+            imprima(a)
+		fim;
+		senao
+		inicio
+           	imprima(b)
+		fim;
+		leia(a);
+        leia(b);
+fim;

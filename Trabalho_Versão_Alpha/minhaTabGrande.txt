@@ -1,0 +1,78 @@
+C	inicia
+T	inicioPrograma				1	0	2	def
+T	identificador				2	0	3	2		# pega nome do identificador + "():"
+T	;							3	0	4	3		# quebra de linha
+N	block						4	0	5	4		# tab
+T	palavraReservadaPonto		5	0	0	0		# faz nada
+C	block
+T	palavraReservadaVar			6	12	7	0
+T	identificador				7	0	8	11		# pega nome do identificador
+T	:							8	0	9	=
+N	type						9	0	10	0		# faz nada
+T	;							10	0	11	3		# quebra de linha
+T	identificador				11	6	8	1
+T	palavraReservadaInicio		12	0	13	3		# quebra de linha
+N	statm						13	0	14	1
+T	;							14	15	13	3		# quebra de linha
+T	palavraReservadaFim			15	0	0	10
+C	type 
+T	palavraReservadaInteiro		16	17	0	Inteiro()
+T	palavraReservadaCadeia		17	0	18	Cadeia
+T	[							18	0	19	(
+T	numb						19	0	20	7		# retorna numero
+T	]							20	0	0	)
+C	statm
+T	palavraReservadaVar			21	24	22	12
+T	=							22	0	23	1
+N	expr						23	0	0	1
+T	identificadorProcedimento	24	28	25	1
+T	(							25	0	26	1
+N	expr						26	0	27	1
+T	)							27	0	0	1
+T	palavraReservadaInicio		28	32	29	0
+N	statm						29	0	30	1
+T	;							30	31	29	3		# quebra de linha
+T	palavraReservadaFim			31	0	0	10		# quebra de linha e reduz identacao
+T	palavraReservadaSe			32	38	33	if
+N	expr						33	0	34	0
+T	palavraReservadaEntao		34	0	35	8
+N	statm						35	0	36	0
+T	palavraReservadaSenao		36	0	37	9
+N	statm						37	0	0	3
+T	palavraReservadaEnquanto	38	0	39	while
+N	expr						39	0	40	0
+T	palavraReservadaFaca		40	0	41	8
+N	statm						41	0	0	1
+C	expr
+N	siexpr						42	0	43	0
+T	=							43	45	44	=
+N	siexpr						44	0	0	0
+T	<							45	46	44	<
+T	>							46	47	44	>
+T	palavraReservadaMenorMaior	47	48	44	!=
+T	palavraReservadaMaiorIgual	48	49	44	>=	
+T	palavraReservadaMenorIgual	49	0	44	<=
+C	siexpr
+T	+							50	55	51	+
+N	term						51	0	52	0
+T	+							52	53	51	+
+T	-							53	54	51	-
+T	palavraReservadaOr			54	0	51	or				
+T	-							55	51	51	-
+C	term
+N	factor						56	0	57	0
+T	*							57	58	56	*
+T	/							58	59	56	/
+T	palavraReservadaDiv			59	60	56	1
+T	palavraReservadaMod			60	61	56	%
+T	palavraReservadaAnd			61	0	56	and
+C	factor
+T	identificador				62	63	0	12
+T	numb						63	64	0	7
+T	palavraReservadaString		64	65	0	1
+T	identificador				65	66	0	12
+T	(							66	69	67	(
+N	expr						67	0	68	0
+T	)							68	0	0	)
+T	palavraReservadaNot			69	0	70	not
+N	factor						70	0	0	0
