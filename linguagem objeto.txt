@@ -1,0 +1,8 @@
+maior a b = if a > b then a else b
+
+#[\df <nome maior> <idp a> <idp b> [\if [\opl <op (>)> <idp a> <idp b>] [<idp a>] [<idp b>]]]
+
+#df - definição de função
+#idp - identificador de parametro
+#opl - operação lógica
+#opa - operação aritimética
