@@ -1,0 +1,36 @@
+C	Expressao
+T	funcao			1	2	5
+N	Identificador	2	3	9
+T	atribuicao		3	4	10
+T	fim				4	0	0
+T	(				5	0	6
+T	idenParametro	6	0	7
+T	)				7	6	8
+T	;				8	0	9
+N	Expressao		9	0	0
+T	=				10	0	11
+N	OpAritmetica	11	0	9
+C	Identificador
+T	variavel		12	13	15
+T	se				13	14	17
+T	enquanto		14	0	21
+T	idenParametro	15	0	16
+T	;				16	0	0
+N	OpLogica		17	0	18
+N	Expressao		18	0	19
+T	senao			19	0	20
+N	Expressao		20	0	0
+N	OpLogica		21	0	20
+C	OpAritmetica
+T	idenParametro	22	0	23
+T	+				23	24	25
+T	-				24	27	25
+T	idenParametro	25	26	27
+N	OpAritmetica	26	0	27
+T	;				27	0	0
+C	OpLogica
+T	!				28	29	30
+T	idenParametro	29	0	0
+T	idenParametro	30	0	31
+T	>				31	32	30
+T	<				32	0	30
