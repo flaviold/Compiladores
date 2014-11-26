@@ -1,0 +1,15 @@
+programa teste
+	var a
+	var b
+	
+	leia(a)
+	leia(b)
+	se a > b entao
+	    imprima(a)
+	fim
+	senao
+	   	imprima(b)
+	fim
+	leia(a)
+	leia(b)
+fim
