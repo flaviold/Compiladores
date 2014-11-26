@@ -4,7 +4,7 @@ for linha in texto.split("\n"):
 	for palavra in linha.strip().split():
 		if(palavra.isalnum()):
 			#analisa palavra
-			print palavra
+			print(palavra)
 			continue
 
 		text = ""
@@ -14,9 +14,9 @@ for linha in texto.split("\n"):
 			else:
 				if len(text) > 0:
 					#analisa text
-					print text
+					print(text)
 					text = ""
 
 				if len(c) > 0:
 					#analisa character
-					print c
+					print(c)
