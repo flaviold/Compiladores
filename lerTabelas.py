@@ -1,6 +1,7 @@
 from hash import *
 
-tabelaFunc = SymbolTable(2,"tabeladefuncoes.txt")
-tabelaIden = SymbolTable(4,"tabeladeidentificadores.txt")
-teste = tabelaFunc.consultaS("leia")
+tabelaFunc = SymbolTable("tabeladefuncoes.txt")
+tabelaIden = SymbolTable("tabeladeidentificadores.txt")
+teste = tabelaFunc.consultarChave("imprimir")
 print(teste)
+tabelaFunc.imprimirTabela()
