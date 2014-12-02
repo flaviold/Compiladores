@@ -70,14 +70,14 @@ class SymbolTable():
         def consultarChave(self, chave):
                 indice = self.hashT(chave)
                 if(self.list[indice].simbolo == None):
-                        return "Não achou!"
+                        return 0
                 else:
                         while((self.list[indice].simbolo != chave)and(self.list[indice].colisao != 0)):
                                 indice = self.list[indice].colisao
                         if(self.list[indice].simbolo == chave):
                                 return self.list[indice].simbolo
                         else:
-                                return "Não achou!"
+                                return 0
 
 
         def imprimirTabela(self):

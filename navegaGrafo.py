@@ -66,10 +66,13 @@ class Grafo():
 		idAtual = 1
 		count = 2
 		for item in listaLex:
+			print(item)
 			noAtual = self.getNoById(idAtual)
 			analisa = self.semantico(item)
+			print("Analisando ", analisa)
 
 			while True:
+				print(noAtual.indice)
 				if analisa != None:
 					#e um simbolo
 					if analisa == noAtual.simbolo:
@@ -99,21 +102,58 @@ class Grafo():
 							noAtual = self.getNoById(noAtual.indiceAlternativo)
 						else:
 							#Programa invalido
-							return False, pilhaAuxiliar[-1][0]
+							return False, pilhaAuxiliar.pop()[0], 
 				#Quando o item nao e de acao semantica
 				else:
-					if noAtual.tipo == "setParametro":
-						if item not in listaVar:
-							listaVar.append(item)
-							idAtual = noAtual.indiceSucessor
-							break
+					if noAtual.simbolo == "setParametro":
+						if item not in self.listaVar:
+							self.listaVar.append(item)
+							if noAtual.indiceSucessor != 0:
+								idAtual = noAtual.indiceSucessor
+								pilhaSintatica.push(item)
+								break
+							else:
+								#retorna para o bloco anterior
+								no = pilhaAuxiliar.pop()
+								if no != None:
+									if no[0] == 0:
+										return True, "Programa Valido"
+									else:
+										idAtual = self.getNoById(no[0]).indiceSucessor
+										break
 
-					if noAtual.tipo == "idenParametro":
-						if item in listaVar:
-							idAtual = noAtual.indiceSucessor
-							break
+					if noAtual.simbolo == "idenParametro":
+						if item in self.listaVar:
+							if noAtual.indiceSucessor != 0:
+								idAtual = noAtual.indiceSucessor
+								pilhaSintatica.push(item)
+								break
+							else:
+								#retorna para o bloco anterior
+								no = pilhaAuxiliar.pop()
+								if no != None:
+									if no[0] == 0:
+										return True, "Programa Valido"
+									else:
+										idAtual = self.getNoById(no[0]).indiceSucessor
+										break
 						else:
 							return False, "Varialvel nao declarada"
+
+					if noAtual.simbolo == "Expressao":
+						if noAtual.indiceSucessor != 0:
+							idAtual = noAtual.indiceSucessor
+							pilhaSintatica.push(item)
+							break
+						else:
+							#retorna para o bloco anterior
+							no = pilhaAuxiliar.pop()
+							if no != None:
+								if no[0] == 0:
+									return True, "Programa Valido"
+								else:
+									idAtual = self.getNoById(no[0]).indiceSucessor
+									break
 
 					if item == noAtual.simbolo:
 						if noAtual.tipo == "N":
@@ -123,13 +163,16 @@ class Grafo():
 							count += 1
 						elif noAtual.tipo == "T":
 							#Nao e bloco e leu
+							print(noAtual.simbolo)
 							if noAtual.indiceSucessor != 0:
 								idAtual = noAtual.indiceSucessor
 								pilhaSintatica.push(item)
 								break
 							else:
+								print("retorna bloco")
 								#retorna para o bloco anterior
 								no = pilhaAuxiliar.pop()
+								print(no)
 								if no != None:
 									if no[0] == 0:
 										return True, "Programa Valido"
