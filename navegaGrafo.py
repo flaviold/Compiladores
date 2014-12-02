@@ -42,6 +42,7 @@ class Grafo():
 	def __init__(self, caminhoArq, hashIden, hashFunc):
 		self.hashIden = hashIden
 		self.hashFunc = hashFunc
+		self.listaVar = []
 		self.listaBlocos = []
 		self.tamanho = 0
 
@@ -50,9 +51,9 @@ class Grafo():
 		for linha in texto:
 			palavras = linha.split()
 			if(palavras[0] == "C"):
-				self.listaBlocos.append(Bloco(linha[1]))
+				self.listaBlocos.append(Bloco(palavras[1]))
 			else:
-				noLista = NoLista(linha[0],linha[1],linha[2],linha[3],linha[4])
+				noLista = NoLista(palavras[0],palavras[1],palavras[2],palavras[3],palavras[4])
 				self.listaBlocos[-1].nos.append(noLista)
 
 	def verificaPrograma(self, listaLex):
@@ -65,40 +66,81 @@ class Grafo():
 		idAtual = 1
 		count = 2
 		for item in listaLex:
-			noAtual = getNoById(idAtual)
+			noAtual = self.getNoById(idAtual)
 			analisa = self.semantico(item)
 
 			while True:
 				if analisa != None:
+					#e um simbolo
 					if analisa == noAtual.simbolo:
 						if noAtual.tipo == "N":
-							noAtual = getBlocoByType(noAtual.simbolo)
-						pilhaSintatica.push(item)
-						pilhaAuxiliar.push((noAtual.indiceSucessor, count))
-						if noAtual == :
-							pass
-						count += 1
-						break
-					
-					if noAtual.indiceAlternativo != 0:
-						noAtual = getNoById(noAtual.indiceAlternativo)
+							#Empilha o no onde deixamos o bloco
+							pilhaAuxiliar.push((noAtual.indice, count))
+							noAtual = self.getBlocoByType(noAtual.simbolo)
+							count += 1
+							analisa = None
+						elif noAtual.tipo == "T":
+							#Nao e bloco e leu
+							if noAtual.indiceSucessor != 0:
+								idAtual = noAtual.indiceSucessor
+								pilhaSintatica.push(item)
+								break
+							else:
+								#retorna para o bloco anterior
+								no = pilhaAuxiliar.pop()
+								if no != None:
+									if no[0] == 0:
+										return True, "Programa Valido"
+									else:
+										idAtual = self.getNoById(no[0]).indiceSucessor
+										break
 					else:
-						return pilhaAuxiliar[-1]
-				#Quando o item não é de ação semantica
+						if noAtual.indiceAlternativo != 0:
+							noAtual = self.getNoById(noAtual.indiceAlternativo)
+						else:
+							#Programa invalido
+							return False, pilhaAuxiliar[-1][0]
+				#Quando o item nao e de acao semantica
 				else:
+					if noAtual.tipo == "setParametro":
+						if item not in listaVar:
+							listaVar.append(item)
+							idAtual = noAtual.indiceSucessor
+							break
+
+					if noAtual.tipo == "idenParametro":
+						if item in listaVar:
+							idAtual = noAtual.indiceSucessor
+							break
+						else:
+							return False, "Varialvel nao declarada"
+
 					if item == noAtual.simbolo:
-						pilhaSintatica.push(item)
-						pilhaAuxiliar.push((noAtual.indiceSucessor, count))
-						count += 1
-						break
-					
-					if noAtual.indiceAlternativo != 0:
-						noAtual = getNoById(noAtual.indiceAlternativo)
-					else:
-						return pilhaAuxiliar[-1]
+						if noAtual.tipo == "N":
+							#Empilha o no onde deixamos o bloco
+							pilhaAuxiliar.push((noAtual.indice, count))
+							noAtual = self.getBlocoByType(noAtual.simbolo)
+							count += 1
+						elif noAtual.tipo == "T":
+							#Nao e bloco e leu
+							if noAtual.indiceSucessor != 0:
+								idAtual = noAtual.indiceSucessor
+								pilhaSintatica.push(item)
+								break
+							else:
+								#retorna para o bloco anterior
+								no = pilhaAuxiliar.pop()
+								if no != None:
+									if no[0] == 0:
+										return True, "Programa Valido"
+									else:
+										idAtual = self.getNoById(no[0]).indiceSucessor
+										break
 
-
-
+	def getBlocoByType(self, tipo):
+		for b in self.listaBlocos:
+			if b.simbolo == tipo:
+				return b.nos[0]
 
 	def getNoById(self, id):
 		for b in self.listaBlocos:
@@ -113,14 +155,17 @@ class Grafo():
 		if self.hashFunc.consultarChave(palavra) != 0:
 			return "funcao"
 
+		if palavra in self.listaVar:
+			return "atribuicao"
+
 		return None
 
 
 
-	def lexico(self):
+	def lexico(self, caminho):
 		listaLex = []
 		arq = open(caminho, "Ur")
-		titulo = arq.readline()
+		titulo = arq.readline().split()[1]
 		texto = arq.read().replace("\t", "")
 		for linha in texto.split("\n"):
 			for palavra in linha.strip().split():
@@ -140,4 +185,4 @@ class Grafo():
 						if len(c) > 0:
 							listaLex.append(c)
 		
-		return listaLex
+		return titulo, listaLex

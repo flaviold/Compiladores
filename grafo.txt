@@ -11,10 +11,10 @@ N	Expressao		9	0	0
 T	=				10	0	11
 N	OpAritmetica	11	0	9
 C	Identificador
-T	variavel		12	13	15
+T	var				12	13	15
 T	se				13	14	17
 T	enquanto		14	0	21
-T	idenParametro	15	0	16
+T	setParametro	15	0	16
 T	;				16	0	0
 N	OpLogica		17	0	18
 N	Expressao		18	0	19
