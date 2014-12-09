@@ -30,7 +30,7 @@ N	OpAritmetica	26	0	27
 T	;				27	0	0
 C	OpLogica
 T	!				28	29	30
-T	idenParametro	29	0	0
-T	idenParametro	30	0	31
+T	idenParametro	29	0	31
+T	idenParametro	30	0	0
 T	>				31	32	30
 T	<				32	0	30

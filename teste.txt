@@ -4,11 +4,11 @@ programa teste
 	
 	leia(a);
 	leia(b);
-	se a > b entao
-	    imprima(a);
+	se a > b
+	    imprimir(a);
 	fim
 	senao
-	   	imprima(b);
+	   	imprimir(b);
 	fim
 	leia(a);
 	leia(b);
